@@ -1,0 +1,54 @@
+
+:host{
+    margin: 0 2px;
+}
+form{
+    display: block;
+    width: 100%;
+}
+.input-container{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    border: 2px solid rgb(209, 209, 209);
+    border-radius: 7px;
+    overflow: hidden;
+    cursor: text;
+}
+.input-container.errInput{
+    border: 2px solid rgb(255, 147, 147);
+}
+.input-container input{
+    flex: 1;
+    height: 30px;
+    padding: 3px;
+    border: 0;
+    outline: 0;
+}
+.input-container i.icon{
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    display: flex;
+    outline: 0;
+}
+.input-container i.err-icon{
+    display: flex;
+    color: red;
+}
+
+.input-container:focus-within{
+    border: 2px solid rgb(160, 158, 255);
+    outline: 3px solid rgb(212, 212, 255);
+}
+.input-container.errInput:focus-within{
+    border: 2px solid rgb(255, 158, 158);
+    outline: 3px solid rgb(255, 212, 212);
+}
+
+.text-red{
+    color: rgb(255, 85, 85);
+}
+.password-icon{
+    cursor: pointer;
+}

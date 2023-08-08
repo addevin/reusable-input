@@ -1,0 +1,37 @@
+
+<form >
+
+  <div class="input-container" [ngClass]="{'errInput':customErr || formInput.invalid && (formInput.dirty || formInput.touched)}">
+      <!-- Input element with ngModel binding and validation attributes -->
+      <input
+        [type]="inputOptions?.type=='password'?inputType: inputOptions?.type?? 'text'"
+        [placeholder]="inputOptions?.placeholder??''"
+        [(ngModel)]="inputData"
+        #formInput="ngModel"
+        name="inputData"
+        (change)="passData()"
+        (blur)="passData()"
+        [required]="inputOptions?.validation?.required?.state??false"
+        [minlength]="inputOptions?.validation?.minLength?.state??0"
+        [maxLength]="inputOptions?.validation?.maxLength?.state??1000000000"
+        [pattern]="inputOptions?.validation?.pattern?.state??''"
+      />
+    
+      <!-- Icon element with a custom directive (appIcons) -->
+      <i class="icon err-icon" [appIcons]="{ name: 'icon-exclamation', w: '23', h: '23' }" tabindex="-1" *ngIf="customErr || formInput.invalid && (formInput.dirty || formInput.touched)" (click)="doFocus()"></i>
+      <i class="icon password-icon" [appIcons]="{ name: 'icon-eye-open', w: '23', h: '23' }" tabindex="-1" *ngIf="inputOptions?.type=='password'&&inputType=='text'" (click)="passwordToggle()"></i>
+      <i class="icon password-icon" [appIcons]="{ name: 'icon-eye-closed', w: '23', h: '23' }" tabindex="-1" *ngIf="inputOptions?.type=='password'&&inputType=='password'" (click)="passwordToggle()"></i>
+  </div>
+  
+    <!-- Validation messages -->
+    <div *ngIf=" formInput.invalid && (formInput.dirty || formInput.touched)">
+      <div *ngIf="formInput.errors?.['required']" class="text-red">{{inputOptions?.validation?.required?.message??'Input is required!'}}</div>
+      <div *ngIf="formInput.errors?.['minlength']" class="text-red">{{inputOptions?.validation?.minLength?.message??'Input must be at least '+inputOptions?.validation?.minLength?.state+' characters long.'}}</div>
+      <div *ngIf="formInput.errors?.['maxlength']" class="text-red">{{inputOptions?.validation?.maxLength?.message??'Input must be at most '+inputOptions?.validation?.maxLength?.state+' characters long.'}}</div>
+      <div *ngIf="formInput.errors?.['pattern']" class="text-red">{{inputOptions?.validation?.pattern?.message??'Input must follow the the rule.'}}</div>
+    </div>
+    <div *ngIf="customErr ">
+      <div class="text-red">{{customErr}}</div>
+    </div>
+    
+</form>

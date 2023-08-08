@@ -1,0 +1,17 @@
+<form (submit)="doSubmit()">
+    <div class="row">
+        <pre-input [inputOptions]="formControlOptions['name']" (value)="gotNewValue($event, 'name')" [customErr]="customErr['name']"></pre-input>
+        <pre-input [inputOptions]="formControlOptions['username']" (value)="gotNewValue($event, 'name')" [customErr]="customErr['name']"></pre-input>
+
+    </div>
+    <div class="row">
+        <pre-input [inputOptions]="formControlOptions['password']"  (value)="gotNewValue($event, 'password')" [customErr]="customErr['password']"></pre-input>
+        <pre-input [inputOptions]="formControlOptions['password']"  (value)="gotNewValue($event, 'repassword')" [customErr]="customErr['password']"></pre-input>
+    </div>
+    <div class="row">
+        <button>Save</button>
+    </div>
+    <div class="success" *ngIf="success_message" (click)="success_message=null">
+        {{success_message}}
+    </div>
+</form>
